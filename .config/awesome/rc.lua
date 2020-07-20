@@ -1,6 +1,7 @@
 -- If LuaRocks is installed, make sure that packages installed through it are
 -- found (e.g. lgi). If LuaRocks is not installed, do nothing.
 pcall(require, "luarocks.loader")
+
 -- Standard awesome library
 local gears = require("gears")
 local awful = require("awful")
@@ -411,7 +412,7 @@ globalkeys = gears.table.join(
 -- Google Chrome
     awful.key({ modkey }, "z", function() awful.util.spawn("vivaldi-stable") end,
               {description = "Open Chromium", group = "Applications"}),
-awful.key({ modkey }, "e", function() awful.util.spawn("alacritty -e nvim") end,
+awful.key({ modkey }, "e", function() awful.util.spawn("alacritty -e nvim /home/nico/") end,
               {description = "Open nvim", group = "Applications"}),
 
 -- Ranger
@@ -653,7 +654,7 @@ end)
 
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
-	c:emit_signal("request::activate", "mouse_enter", {raise = false})
+		c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
