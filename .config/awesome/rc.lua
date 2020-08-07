@@ -128,7 +128,7 @@ mytextclock:connect_signal("button::press",
         if button == 1 then cw.toggle() end
     end)
 
-    local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
+local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
 
 local separator = wibox.widget.textbox('   ')
 
@@ -659,8 +659,13 @@ end)
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 --}}}
-
-
+--Rounded corners{{
+client.connect_signal("manage", function (c)
+    c.shape = function(cr,w,h)
+        gears.shape.rounded_rect(cr,w,h,10)
+    end
+end)
+--}}
 --STARTUP APPLICATIONS ME +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 awful.spawn.with_shell('picom')
 awful.spawn.with_shell("/home/nico/.config/scripts/startup.sh")
